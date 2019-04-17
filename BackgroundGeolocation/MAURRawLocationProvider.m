@@ -42,7 +42,8 @@ static NSString * const Domain = @"com.marianhello";
 {
     DDLogVerbose(@"%@ configure", TAG);
     _config = config;
-
+    
+    locationManager.allowsBackgroundLocationUpdates = [config allowBackgroundLocationUpdate];
     locationManager.pausesLocationUpdatesAutomatically = [config pauseLocationUpdates];
     locationManager.activityType = [config decodeActivityType];
     locationManager.distanceFilter = config.distanceFilter.integerValue; // meters

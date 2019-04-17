@@ -12,7 +12,7 @@
 
 @implementation MAURConfig 
 
-@synthesize stationaryRadius, distanceFilter, desiredAccuracy, _debug, activityType, activitiesInterval, _stopOnTerminate, url, syncUrl, syncThreshold, httpHeaders, _saveBatteryOnBackground, maxLocations, _pauseLocationUpdates, locationProvider, _template;
+@synthesize stationaryRadius, distanceFilter, desiredAccuracy, _debug, activityType, activitiesInterval, _stopOnTerminate, url, syncUrl, syncThreshold, httpHeaders, _saveBatteryOnBackground, maxLocations, _pauseLocationUpdates,_allowBackgroundLocationUpdate, locationProvider, _template;
 
 -(instancetype) initWithDefaults {
     self = [super init];
@@ -32,6 +32,7 @@
     maxLocations = [NSNumber numberWithInt:10000];
     syncThreshold = [NSNumber numberWithInt:100];
     _pauseLocationUpdates = [NSNumber numberWithBool:NO];
+    _allowBackgroundLocationUpdate = [NSNumber numberWithBool:YES];
     locationProvider = [NSNumber numberWithInt:DISTANCE_FILTER_PROVIDER];
 //    template =
     
@@ -83,6 +84,9 @@
     }
     if (isNotNull(config[@"pauseLocationUpdates"])) {
         instance._pauseLocationUpdates = config[@"pauseLocationUpdates"];
+    }
+    if (isNotNull(config[@"allowBackgroundLocationUpdate"])) {
+        instance._allowBackgroundLocationUpdate = config[@"allowBackgroundLocationUpdate"];
     }
     if (isNotNull(config[@"locationProvider"])) {
         instance.locationProvider = config[@"locationProvider"];
@@ -148,6 +152,9 @@
     if ([newConfig hasPauseLocationUpdates]) {
         merger._pauseLocationUpdates = newConfig._pauseLocationUpdates;
     }
+    if ([newConfig hasAllowBackgroundLocationUpdate]) {
+        merger._allowBackgroundLocationUpdate = newConfig._allowBackgroundLocationUpdate;
+    }
     if ([newConfig hasLocationProvider]) {
         merger.locationProvider = newConfig.locationProvider;
     }
@@ -176,6 +183,7 @@
         copy._saveBatteryOnBackground = _saveBatteryOnBackground;
         copy.maxLocations = maxLocations;
         copy._pauseLocationUpdates = _pauseLocationUpdates;
+        copy._allowBackgroundLocationUpdate = _allowBackgroundLocationUpdate;
         copy.locationProvider = locationProvider;
         copy._template = _template;
     }
@@ -314,6 +322,11 @@
     return _pauseLocationUpdates != nil;
 }
 
+- (BOOL) hasAllowBackgroundLocationUpdate
+{
+    return _allowBackgroundLocationUpdate != nil;
+}
+
 - (BOOL) hasLocationProvider
 {
     return locationProvider != nil;
@@ -358,6 +371,11 @@
 - (BOOL) pauseLocationUpdates
 {
     return _pauseLocationUpdates.boolValue;
+}
+
+- (BOOL) allowBackgroundLocationUpdate
+{
+    return _allowBackgroundLocationUpdate.boolValue;
 }
 
 - (CLActivityType) decodeActivityType
@@ -470,6 +488,7 @@
     if ([self hasSaveBatteryOnBackground]) [dict setObject:self._saveBatteryOnBackground forKey:@"saveBatteryOnBackground"];
     if ([self hasMaxLocations]) [dict setObject:self.maxLocations forKey:@"maxLocations"];
     if ([self hasPauseLocationUpdates]) [dict setObject:self._pauseLocationUpdates forKey:@"pauseLocationUpdates"];
+    if ([self hasAllowBackgroundLocationUpdate]) [dict setObject:self._allowBackgroundLocationUpdate forKey:@"allowBackgroundLocationUpdate"];
     if ([self hasLocationProvider]) [dict setObject:self.locationProvider forKey:@"locationProvider"];
     [dict setObject:self._template forKey:@"postTemplate"];
 
@@ -478,7 +497,7 @@
 
 - (NSString *) description
 {
-    return [NSString stringWithFormat:@"Config: distanceFilter=%@ stationaryRadius=%@ desiredAccuracy=%@ activityType=%@ activitiesInterval=%@ isDebugging=%@ stopOnTerminate=%@ url=%@ syncThreshold=%@ maxLocations=%@ httpHeaders=%@ pauseLocationUpdates=%@ saveBatteryOnBackground=%@ locationProvider=%@ postTemplate=%@", self.distanceFilter, self.stationaryRadius, self.desiredAccuracy, self.activityType, self.activitiesInterval, self._debug, self._stopOnTerminate, self.url, self.syncThreshold, self.maxLocations, self.httpHeaders, self._pauseLocationUpdates, self._saveBatteryOnBackground, self.locationProvider, self._template];
+    return [NSString stringWithFormat:@"Config: distanceFilter=%@ stationaryRadius=%@ desiredAccuracy=%@ activityType=%@ activitiesInterval=%@ isDebugging=%@ stopOnTerminate=%@ url=%@ syncThreshold=%@ maxLocations=%@ httpHeaders=%@ pauseLocationUpdates=%@ allowBackgroundLocationUpdate=%@ saveBatteryOnBackground=%@ locationProvider=%@ postTemplate=%@", self.distanceFilter, self.stationaryRadius, self.desiredAccuracy, self.activityType, self.activitiesInterval, self._debug, self._stopOnTerminate, self.url, self.syncThreshold, self.maxLocations, self.httpHeaders, self._pauseLocationUpdates, self._allowBackgroundLocationUpdate,self._saveBatteryOnBackground, self.locationProvider, self._template];
 
 }
 

@@ -59,7 +59,7 @@ static NSString * const Domain = @"com.marianhello";
 - (BOOL) onConfigure:(MAURConfig*)config error:(NSError * __autoreleasing *)outError
 {
     DDLogVerbose(@"%@ configure", TAG);
-    
+    locationManager.allowsBackgroundLocationUpdates = [config allowBackgroundLocationUpdate];
     locationManager.pausesLocationUpdatesAutomatically = [config pauseLocationUpdates];
     locationManager.activityType = [config decodeActivityType];
     locationManager.distanceFilter = config.distanceFilter.integerValue; // meters

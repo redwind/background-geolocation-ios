@@ -239,6 +239,17 @@ FMDBLogger *sqliteLogger;
     return isStarted;
 }
 
+- (void) setAllowBackgroundLocationUpdate:(BOOL)allow
+{
+     DDLogInfo(@"%@ #setAllowBackgroundLocationUpdate %d", TAG, allow);
+    
+    MAURLocationManager *locationManager2 = [MAURLocationManager sharedInstance];
+    INTULocationManager *locationManager = [INTULocationManager sharedInstance];
+    
+    [locationManager2 setAllowBackgroundLocationUpdate:allow];
+    [locationManager setBackgroundLocationUpdate:allow];
+}
+
 /**
  * toggle between foreground and background operation mode
  */

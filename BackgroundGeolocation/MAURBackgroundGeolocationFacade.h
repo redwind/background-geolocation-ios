@@ -28,6 +28,7 @@
 - (BOOL) isStarted;
 - (void) showAppSettings;
 - (void) showLocationSettings;
+- (void) setAllowBackgroundLocationUpdate:(BOOL)allow;
 - (void) switchMode:(MAUROperationalMode)mode;
 - (MAURLocation*)getStationaryLocation;
 - (NSArray<MAURLocation*>*) getLocations;

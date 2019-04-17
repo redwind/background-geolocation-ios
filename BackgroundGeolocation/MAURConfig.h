@@ -33,6 +33,7 @@ enum {
 @property NSNumber *_saveBatteryOnBackground;
 @property NSNumber *maxLocations;
 @property NSNumber *_pauseLocationUpdates;
+@property NSNumber *_allowBackgroundLocationUpdate;
 @property NSNumber *locationProvider;
 @property NSObject *_template;
 
@@ -56,6 +57,7 @@ enum {
 - (BOOL) hasSaveBatteryOnBackground;
 - (BOOL) hasMaxLocations;
 - (BOOL) hasPauseLocationUpdates;
+- (BOOL) hasAllowBackgroundLocationUpdate;
 - (BOOL) hasLocationProvider;
 - (BOOL) hasTemplate;
 - (BOOL) hasActivitiesInterval;
@@ -63,6 +65,7 @@ enum {
 - (BOOL) stopOnTerminate;
 - (BOOL) saveBatteryOnBackground;
 - (BOOL) pauseLocationUpdates;
+- (BOOL) allowBackgroundLocationUpdate;
 - (CLActivityType) decodeActivityType;
 - (NSInteger) decodeDesiredAccuracy;
 - (NSString*) getHttpHeadersAsString:(NSError * __autoreleasing *)outError;
