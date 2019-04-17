@@ -113,6 +113,10 @@ FMDBLogger *sqliteLogger;
     
     postLocationTask.config = _config;
     
+    [self runOnMainThread:^{
+        [self setAllowBackgroundLocationUpdate:_config.allowBackgroundLocationUpdate];
+    }];
+
     MAURSQLiteConfigurationDAO* configDAO = [MAURSQLiteConfigurationDAO sharedInstance];
     [configDAO persistConfiguration:_config];
     
