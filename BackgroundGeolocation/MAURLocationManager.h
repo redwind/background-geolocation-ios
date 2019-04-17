@@ -39,6 +39,7 @@
 - (void) stopMonitoringAllRegions;
 - (NSSet<__kindof CLRegion *>*) monitoredRegions;
 - (void) setAllowBackgroundLocationUpdate:(BOOL)allow;
+- (BOOL) allowsBackgroundLocationUpdates;
 - (void) setShowsBackgroundLocationIndicator:(BOOL)shows;
 - (void) setPausesLocationUpdatesAutomatically:(BOOL)newPausesLocationsUpdatesAutomatically;
 - (BOOL) pausesLocationUpdatesAutomatically;
