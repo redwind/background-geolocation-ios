@@ -250,7 +250,7 @@ FMDBLogger *sqliteLogger;
     MAURLocationManager *locationManager2 = [MAURLocationManager sharedInstance];
     INTULocationManager *locationManager = [INTULocationManager sharedInstance];
     
-    [locationManager2 setAllowBackgroundLocationUpdate:allow];
+    [locationManager2 setAllowsBackgroundLocationUpdates:allow];
     [locationManager setBackgroundLocationUpdate:allow];
 }
 
